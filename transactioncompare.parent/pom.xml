@@ -20,6 +20,8 @@
 	<modules>
 		<module>transactioncompare.core</module>
 		<module>transactioncompare.web</module>
+		<module>transactioncompare.api</module>
 		<module>transactioncompare.test</module>
+		<module>transactioncompare.dto</module>
 	</modules>
 </project>

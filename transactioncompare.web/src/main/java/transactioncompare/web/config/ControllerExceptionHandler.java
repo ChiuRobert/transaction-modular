@@ -16,7 +16,7 @@ public class ControllerExceptionHandler {
 	
     @ExceptionHandler(value = { FileCompareException.class })
     public ResponseEntity<Object> handleInvalidInputException(FileCompareException ex) {
-    	LOGGER.error("Error occured while comparing the files " + ex.getMessage());
+    	LOGGER.error("Error occured while comparing the files ", ex);
         return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

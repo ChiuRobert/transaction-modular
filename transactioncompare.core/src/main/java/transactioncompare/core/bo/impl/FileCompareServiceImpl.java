@@ -1,4 +1,4 @@
-package transactioncompare.core.service.impl;
+package transactioncompare.core.bo.impl;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,13 +16,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import transactioncompare.core.bo.FileCompareService;
 import transactioncompare.core.model.FileInfo;
-import transactioncompare.core.service.FileCompare;
 
 @Service
-public class FileCompareImpl implements FileCompare {
+public class FileCompareServiceImpl implements FileCompareService {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(FileCompareImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileCompareServiceImpl.class);
 
 	@Override
 	public List<FileInfo> compare(MultipartFile file1, MultipartFile file2) throws IOException {
