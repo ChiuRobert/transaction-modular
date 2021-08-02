@@ -1,0 +1,61 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<br/>
+	<div class="container">
+	    <h5>Select file to compare</h5>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<div class="row">
+				<div class="form-group col-xl-6 col-lg-1">
+					<label for="code">Select file 1</label> 
+					<input type="file" class="form-control" name="file1"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-xl-6 col-lg-1">
+					<label for="code">Select file 2</label> 
+					<input type="file" class="form-control" name="file2"/>
+				</div>
+			</div>			
+			<div class="row">
+				<button type="submit" class="btn btn-light">Upload</button>
+			</div>
+		</form>
+	</div>
+	
+	<div class="container" th:if="${fileUploded}">
+		<h5>Comparison results</h5>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${fileInfo1?.name}"></h5>
+						<p class="card-text" th:text="'Total records: ' + ${fileInfo1?.totalRecords}" />
+						<p class="card-text" th:text="'Matching records: ' + ${fileInfo1?.matchingRecords}" />
+						<p class="card-text" th:text="'Unmatched records: ' + ${fileInfo1?.unmatchedRecords}" />
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${fileInfo2?.name}"></h5>
+						<p class="card-text" th:text="'Total records: ' + ${fileInfo2?.totalRecords}" />
+						<p class="card-text" th:text="'Matching records: ' + ${fileInfo2?.matchingRecords}" />
+						<p class="card-text" th:text="'Unmatched records: ' + ${fileInfo2?.unmatchedRecords}" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<form method="POST" action="/">
+			<div class="row">
+				<button type="submit" class="btn btn-light">Unmatched Report</button>
+			</div>
+		</form>
+		
+	</div>
+</body>
+</html>
