@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,7 +109,7 @@ public class FileCompareServiceImpl implements FileCompareService {
 
 	@Override
 	public List<String> getUnmatchedEntries() {
-		return secondFileMap.getEntryMap().keySet().stream().toList();
+		return secondFileMap.getEntryMap().keySet().stream().collect(Collectors.toList());
 	}
 
 	private List<FileInfoDTO> createFileInfoDTOs(MultipartFile file1, MultipartFile file2, int totalLinesFirstFile,
