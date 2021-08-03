@@ -163,7 +163,3 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/git,java,maven,eclipse,windows
-
-# Custom
-transactioncompare.web/upload-dir
-transactioncompare.api/upload-dir

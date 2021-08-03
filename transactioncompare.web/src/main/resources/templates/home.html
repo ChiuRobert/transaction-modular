@@ -1,31 +1,34 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 </head>
 <body>
-	<br/>
+	<br />
 	<div class="container">
-	    <h5>Select file to compare</h5>
-		<form method="POST" enctype="multipart/form-data" action="/home">
+		<h5>Select files to compare</h5>
+		<form method="POST" enctype="multipart/form-data" action="/compare">
 			<div class="row">
 				<div class="form-group col-xl-6 col-lg-1">
-					<label for="code">Select file 1</label> 
-					<input type="file" class="form-control" name="file1"/>
+					<label for="code">Select file 1</label>
+					<input type="file" class="form-control" name="file1" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-xl-6 col-lg-1">
 					<label for="code">Select file 2</label> 
-					<input type="file" class="form-control" name="file2"/>
+					<input type="file" class="form-control" name="file2" />
 				</div>
-			</div>			
+			</div>
 			<div class="row">
-				<button type="submit" class="btn btn-light">Upload</button>
+				<button type="submit" class="btn btn-light">Compare</button>
 			</div>
 		</form>
 	</div>
-	
-	<div class="container" th:if="${fileUploded}">
+
+	<div class="container" th:if="${fileUploaded}">
 		<h5>Comparison results</h5>
 		<div class="row">
 			<div class="col-sm-6">
@@ -49,13 +52,62 @@
 				</div>
 			</div>
 		</div>
-		
-		<form method="POST" action="/home">
+		<br />
+		<form method="POST" action="/suggest">
 			<div class="row">
 				<button type="submit" class="btn btn-light">Unmatched Report</button>
 			</div>
 		</form>
-		
 	</div>
+
+	<div th:if="${suggestionEnabled}">
+		<table class="table table-striped">
+			<tr>
+				<th scope="col" th:text="${fileInfo1?.name}" />
+			</tr>
+			<th:block th:each="entry : ${suggestions}" th:with="user=${entry.value}">
+				<tr>
+					<td scope="row" class="accordion" th:text="${entry.key}"></td>
+				</tr>
+				<tr style="display: none">
+					<td colspan="8" th:text="${user}" />
+				</tr>
+			</th:block>
+		</table>
+		
+		<br />
+		<table class="table">
+			<tr class="table-active">
+				<th scope="col" th:text="${fileInfo2?.name}" />
+			</tr>
+			<th:block th:each="entry : ${unmatched}">
+				<tr>
+					<td scope="row" class="accordion" th:text="${entry}"></td>
+				</tr>
+			</th:block>			
+		</table>
+	</div>
+
+	<script type="text/javascript">
+	 var acc = document.getElementsByClassName("accordion");
+	 var i;
+	
+	 for (i = 0; i < acc.length; i++) {
+	     acc[i].addEventListener("click", function() {
+	       console.log(this.parentElement.nextElementSibling)
+	         /* Toggle between adding and removing the "active" class,
+	         to highlight the button that controls the panel */
+	         this.classList.toggle("active");
+	
+	         /* Toggle between hiding and showing the active panel */
+	         var panel = this.parentElement.nextElementSibling;
+	         if (panel.style.display === "table-row") {
+	             panel.style.display = "none";
+	         } else {
+	             panel.style.display = "table-row";
+	         }
+	     });
+	 }
+	</script>
 </body>
 </html>

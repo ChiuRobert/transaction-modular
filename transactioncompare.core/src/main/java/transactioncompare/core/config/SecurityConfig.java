@@ -1,4 +1,4 @@
-package transactioncompare.web.config;
+package transactioncompare.core.config;
 
 import java.util.Arrays;
 

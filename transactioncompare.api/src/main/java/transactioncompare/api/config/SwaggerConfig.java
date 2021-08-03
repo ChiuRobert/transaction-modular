@@ -1,4 +1,4 @@
-package transactioncompare.web.config;
+package transactioncompare.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

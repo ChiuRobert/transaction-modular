@@ -2,6 +2,9 @@ package transactioncompare.core.model;
 
 import java.util.Objects;
 
+/**
+ * POJO used to transfer information about the file 
+ */
 public class FileInfo {
 	
 	private String name;
