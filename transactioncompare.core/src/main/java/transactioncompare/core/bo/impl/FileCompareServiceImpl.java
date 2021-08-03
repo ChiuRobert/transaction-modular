@@ -131,7 +131,7 @@ public class FileCompareServiceImpl implements FileCompareService {
 		secondFileInfo.setMatchingRecords(totalLinesSecondFile - unmatchedRecordsSecondFile);
 
 		return List.of(firstFileInfo, secondFileInfo).stream()
-				.map(file -> DTOConverter.convertFileInfoToFileInfoDTO(file)).toList();
+				.map(file -> DTOConverter.convertFileInfoToFileInfoDTO(file)).collect(Collectors.toList());
 	}
 
 	private String extractTransactionNarrative(String entry) {
